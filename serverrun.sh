@@ -1,0 +1,2 @@
+./rdicgdberr&
+./rdicgdbout

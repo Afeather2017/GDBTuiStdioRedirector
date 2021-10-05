@@ -20,7 +20,7 @@
 #define PLINE() printf("%d\n", __LINE__)
 #define RECONNECT_TIME 1
 int clientInit(int outfd, int errfd);
-#define clientAutoInit(STDOUT_FILENO, STDERR_FILENO);
+#define clientAutoInit() clientInit(STDOUT_FILENO, STDERR_FILENO);
 #define sys_error(str) {fprintf(stderr, "%s:%s:%d:",__FILE__, __func__, __LINE__);perror(str);}
 
 

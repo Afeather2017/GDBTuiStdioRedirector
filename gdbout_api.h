@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <sys/un.h>
 #include <sys/types.h>
+#include <sys/ptrace.h>
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
@@ -95,6 +96,10 @@ void clientClose(int *fds){
 	}
 }
 int clientInit(int outfd, int errfd){
+	if(ptrace(PTRACE_TRACEME, 0, NULL, 0) != -1){
+		return -1;
+	}
+
 	int cfdo = openSocketUn(CLI_SOCK_STDOUT);
 	int cfde = openSocketUn(CLI_SOCK_STDERR);
 	setvbuf(stdout, NULL, _IONBF, 0);
